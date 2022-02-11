@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-mill',
@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mill.component.scss']
 })
 export class MillComponent implements OnInit {
+  displayedColumns: string[] = ['position', 'date', 'morning', 'noon', 'night', 'total-day', 'total-month', 'action'];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

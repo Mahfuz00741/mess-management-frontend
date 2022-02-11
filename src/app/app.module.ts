@@ -16,6 +16,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatIconModule} from "@angular/material/icon";
 import { MillComponent } from './modules/mms/mill/mill.component';
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MillComponent } from './modules/mms/mill/mill.component';
     MatSelectModule,
     MatDatepickerModule,
     MatIconModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatButtonModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bazar.component.scss']
 })
 export class BazarComponent implements OnInit {
+  displayedColumns: string[] = ['position', 'date', 'items', 'total-bazar', 'action'];
 
   constructor() { }
 

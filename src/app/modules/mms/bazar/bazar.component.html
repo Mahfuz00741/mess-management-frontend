@@ -1,4 +1,4 @@
-<mat-card class="mt-5 bg-blue-100 h-screen">
+<mat-card class="bg-blue-100">
   <div class="flex items-center justify-center">
     <div class="flex flex-col justify-center items-center bg-red-100 w-2/4 pt-5 pb-16 mt-10 space-y-3">
       <h1 class="mb-5 font-sans bg-green-400 rounded-md px-4 py-2 text-white">Bazar Entry</h1>
@@ -26,6 +26,61 @@
         <mat-label>Items</mat-label>
         <textarea matInput></textarea>
       </mat-form-field>
+
+      <div>
+        <button class="btn btn-save">
+          Save
+        </button>
+        <button class="btn btn-clear ml-3">
+          Clear
+        </button>
+      </div>
     </div>
+  </div>
+
+  <div class="mt-5">
+    <h1 class="mb-2 font-sans bg-green-400 rounded-md px-4 py-2 text-white w-48">
+      Bazar List
+    </h1>
+    <table mat-table class="mat-elevation-z8">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No.</th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="items">
+        <th mat-header-cell *matHeaderCellDef> Items</th>
+        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+      </ng-container>
+
+      <!--Symbol Column -->
+      <ng-container matColumnDef="total-bazar">
+        <th mat-header-cell *matHeaderCellDef> Total Bazar</th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action</th>
+        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        <button mat-fab color="accent" aria-label="Example icon button with a edit icon">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-fab color="warn" aria-label="Example icon button with a delete icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
   </div>
 </mat-card>
