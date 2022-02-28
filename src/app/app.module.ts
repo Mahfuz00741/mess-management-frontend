@@ -17,13 +17,19 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatIconModule} from "@angular/material/icon";
 import { MillComponent } from './modules/mms/mill/mill.component';
 import {MatButtonModule} from "@angular/material/button";
+import { AddMemberComponent } from './modules/mms/add-member/add-member.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatRadioModule} from "@angular/material/radio";
+import { JomaComponent } from './modules/mms/joma/joma.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
     BazarComponent,
-    MillComponent
+    MillComponent,
+    AddMemberComponent,
+    JomaComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,9 @@ import {MatButtonModule} from "@angular/material/button";
     MatDatepickerModule,
     MatIconModule,
     MatNativeDateModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
