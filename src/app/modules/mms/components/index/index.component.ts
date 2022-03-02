@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'joma', 'total-mill', 'total-cost', 'tr', 'dr'];
+  displayedColumns: string[] = ['position', 'name', 'joma', 'total-meal', 'total-cost', 'tr', 'dr'];
 
   constructor() { }
 

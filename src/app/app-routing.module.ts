@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {IndexComponent} from "./modules/mms/index/index.component";
-import {BazarComponent} from "./modules/mms/bazar/bazar.component";
-import {MillComponent} from "./modules/mms/mill/mill.component";
-import {AddMemberComponent} from "./modules/mms/add-member/add-member.component";
-import {JomaComponent} from "./modules/mms/joma/joma.component";
+import {IndexComponent} from "./modules/mms/components/index/index.component";
+import {BazarComponent} from "./modules/mms/components/bazar/bazar.component";
+import {MealComponent} from "./modules/mms/components/meal/meal.component";
+import {AddMemberComponent} from "./modules/mms/components/add-member/add-member.component";
+import {JomaComponent} from "./modules/mms/components/joma/joma.component";
 
 const routes: Routes = [
   {path: "", component: IndexComponent},
   {path: "bazar", component: BazarComponent},
-  {path: "mill", component: MillComponent},
+  {path: "meal", component: MealComponent},
   {path: "add-member", component: AddMemberComponent},
   {path: "joma", component: JomaComponent},
 ];
