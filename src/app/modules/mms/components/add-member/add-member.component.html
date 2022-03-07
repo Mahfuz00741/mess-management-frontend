@@ -1,83 +1,140 @@
-<mat-card class="bg-blue-100">
-  <div class="flex items-center justify-center">
-    <div class="flex flex-col justify-center items-center bg-red-100 w-2/4 pt-5 pb-16 mt-10 space-y-3">
-      <h1 class="mb-5 font-sans bg-green-400 rounded-md px-4 py-2 text-white">Add Member</h1>
+<div style="width: 100%">
+  <mat-card class="bg-blue-100 relative">
+<!--    <div id="alert-2" class="flex p-4 mb-4 bg-red-100 rounded-lg dark:bg-red-200 fixed top-4 right-10" role="alert"-->
+<!--         *ngIf="message">-->
+<!--      <svg class="flex-shrink-0 w-5 h-5 text-red-700 dark:text-red-800" fill="currentColor" viewBox="0 0 20 20"-->
+<!--           xmlns="http://www.w3.org/2000/svg">-->
+<!--        <path fill-rule="evenodd"-->
+<!--              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"-->
+<!--              clip-rule="evenodd"></path>-->
+<!--      </svg>-->
+<!--      <div class="ml-3 text-sm font-medium text-red-700 dark:text-red-800">-->
+<!--        {{message}}-->
+<!--      </div>-->
+<!--      <button type="button" (click)="clear()"-->
+<!--              class="ml-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-red-200 dark:text-red-600 dark:hover:bg-red-300"-->
+<!--              data-collapse-toggle="alert-2" aria-label="Close">-->
+<!--        <span class="sr-only">Close</span>-->
+<!--        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">-->
+<!--          <path fill-rule="evenodd"-->
+<!--                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"-->
+<!--                clip-rule="evenodd"></path>-->
+<!--        </svg>-->
+<!--      </button>-->
+<!--    </div>-->
 
-      <mat-form-field class="w-2/5 bg-purple-400" appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput>
-      </mat-form-field>
-
-      <mat-form-field class="w-2/5 bg-purple-400" appearance="fill">
-        <mat-label>Age</mat-label>
-        <input matInput>
-      </mat-form-field>
-
-      <mat-form-field class="w-2/5 bg-purple-400" appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput type="email">
-      </mat-form-field>
-
-      <mat-form-field class="w-2/5 bg-purple-400" appearance="fill">
-        <mat-label>Phone</mat-label>
-        <input matInput>
-      </mat-form-field>
-
-      <div>
-        <button class="btn btn-save">
-          Save
-        </button>
-        <button class="btn btn-clear ml-3">
-          Clear
-        </button>
-      </div>
+    <div class="flex flex-col justify-center items-center">
+<!--      <h1 class="w-72 mb-5 font-sans bg-green-400 rounded-md px-4 py-2 text-white">Add Member</h1>-->
+      <form [formGroup]="formGroup" (ngSubmit)="submit()">
+        <div class="flex items-center rounded-md space-x-1 label relative" >
+          <mat-icon>label</mat-icon>
+          <div *ngIf="!memData.id">Add Member</div>
+          <div *ngIf="memData.id">Update Member</div>
+          <div class="absolute right-0 top-3" *ngIf="memData.id">
+            <button mat-button mat-dialog-close class="text-red-500">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 space-y-2 bg-green-300 p-4 mt-2 rounded-md">
+          <div>
+            <mat-form-field class="w-96 bg-pink-400" appearance="fill">
+              <mat-label>Name</mat-label>
+              <input formControlName="name" matInput>
+              <span *ngIf="formGroup.controls['name'].dirty && formGroup.hasError('required', 'name')"
+                    class="text-white mt-1">Name is required.</span>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="w-96 bg-pink-400" appearance="fill">
+              <mat-label>Age</mat-label>
+              <input formControlName="age" matInput>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="w-96 bg-pink-400" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input formControlName="email" matInput type="email">
+              <span *ngIf="formGroup.controls['email'].dirty && formGroup.hasError('required', 'email')"
+                    class="text-white mt-1">Email not Valid</span>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="w-96 bg-pink-400" appearance="fill">
+              <mat-label>Phone</mat-label>
+              <input formControlName="phone" matInput>
+            </mat-form-field>
+          </div>
+          <div>
+            <button class="btn btn-save" mat-raised-button type="submit" *ngIf="!memData.id" [disabled]="!formGroup.valid">
+              Save
+            </button>
+            <button class="btn btn-save" mat-button mat-dialog-close type="submit" *ngIf="memData.id" [disabled]="!formGroup.valid">
+              Update
+            </button>
+            <button type="button" (click)="clear()" class="btn btn-clear ml-3">
+              Clear
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
-  </div>
 
-  <div class="mt-5">
-    <h1 class="mb-2 font-sans bg-green-400 rounded-md px-4 py-2 text-white w-48">
-      Member List
-    </h1>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!--
+        <div class="mt-5">
+          <h1 class="mb-2 font-sans bg-green-400 rounded-md px-4 py-2 text-white w-48">
+            Member List
+          </h1>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No.</th>
-        <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
-      </ng-container>
+            &lt;!&ndash; Position Column &ndash;&gt;
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> No.</th>
+              <td mat-cell *matCellDef="let element; let i = index"> {{i + 1}} </td>
+            </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name</th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
+            &lt;!&ndash; Name Column &ndash;&gt;
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name</th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef> Phone</th>
-        <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
-      </ng-container>
+            &lt;!&ndash; Weight Column &ndash;&gt;
+            <ng-container matColumnDef="phone">
+              <th mat-header-cell *matHeaderCellDef> Phone</th>
+              <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+            </ng-container>
 
-      <!--Symbol Column -->
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email</th>
-        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-      </ng-container>
+            &lt;!&ndash;Symbol Column &ndash;&gt;
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef> Email</th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
 
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Action</th>
-        <td class="space-x-3" mat-cell *matCellDef="let element">
-          <button>
-            <mat-icon class="hover:text-green-400">edit</mat-icon>
-          </button>
-          <button>
-            <mat-icon class="hover:text-red-400">delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef> Action</th>
+              <td class="space-x-3" mat-cell *matCellDef="let element">
+                <button>
+                  <mat-icon class="hover:text-green-400" (click)="edit(element)">edit</mat-icon>
+                </button>
+                <button>
+                  <mat-icon class="hover:text-red-400" (click)="delete(element.id)">delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </div>
-</mat-card>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+    -->
+
+    <button class="flex space-x-1 mt-10 bg bg-green-500 p-2 rounded-md" *ngIf="!memData.id" (click)="openMemberList()">
+      <mat-icon>list</mat-icon>
+      <div>
+        click here to see Member List
+      </div>
+    </button>
+  </mat-card>
+</div>
+

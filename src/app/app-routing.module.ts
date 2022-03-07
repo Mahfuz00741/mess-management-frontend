@@ -11,6 +11,7 @@ const routes: Routes = [
   {path: "bazar", component: BazarComponent},
   {path: "meal", component: MealComponent},
   {path: "add-member", component: AddMemberComponent},
+  {path: "add-member/:id", component: AddMemberComponent},
   {path: "joma", component: JomaComponent},
 ];
 

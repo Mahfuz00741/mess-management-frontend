@@ -22,6 +22,15 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatRadioModule} from "@angular/material/radio";
 import { JomaComponent } from './modules/mms/components/joma/joma.component';
 import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ListTableComponent } from './shared/list-table/list-table.component';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {CommonModule} from "@angular/common";
+import {ToastrModule} from "ngx-toastr";
+
+function MdDialogRef() {
+
+}
 
 @NgModule({
   declarations: [
@@ -30,7 +39,8 @@ import {HttpClientModule} from "@angular/common/http";
     BazarComponent,
     MealComponent,
     AddMemberComponent,
-    JomaComponent
+    JomaComponent,
+    ListTableComponent
   ],
   imports: [
     BrowserModule,
@@ -50,8 +60,15 @@ import {HttpClientModule} from "@angular/common/http";
     MatCheckboxModule,
     MatRadioModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatDialogModule,
+    CommonModule,
+    ToastrModule.forRoot(),
   ],
-  providers: [MatDatepickerModule],
+  providers: [MatDatepickerModule,
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MdDialogRef, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
